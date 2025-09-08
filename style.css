@@ -1,4 +1,3 @@
-/* Configurações básicas e tipografia */
 
 * {
     margin: 0;
@@ -30,8 +29,9 @@ a {
     color: var(--text-color);
 }
 
+/* --- */
 
-/* Header e Navegação */
+/* Header e Navegação (Melhorias para Mobile) */
 
 header {
     position: fixed;
@@ -70,22 +70,21 @@ nav {
     opacity: 0.7;
 }
 
+/* Burger Menu para telas menores */
 .burger {
-    display: none;
+    display: none; /* Esconde o botão do menu por padrão */
     cursor: pointer;
 }
-
-
-/* Menu Burger (para mobile) */
 
 .burger div {
     width: 25px;
     height: 3px;
-    background-color: #333;
+    background-color: #fff; /* Cor do burger para ser visível no banner */
     margin: 5px;
     transition: all 0.3s ease;
 }
 
+/* --- */
 
 /* Hero Section */
 
@@ -106,10 +105,9 @@ nav {
     width: 100%;
     height: 100%;
     background-image: url('https://i.ibb.co/9m5byd1D/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg');
-    /* Substitua por uma imagem de alta qualidade */
     background-size: cover;
     background-position: center;
-    filter: blur(5px) brightness(1);
+    filter: blur(5px) brightness(0.6); /* Ajustado para melhor contraste */
     transform: scale(1.1);
 }
 
@@ -127,8 +125,9 @@ nav {
     color: #f4f4f4;
 }
 
+/* --- */
 
-/* Seções de Conteúdo */
+/* Seções de Conteúdo (Melhorias para Mobile) */
 
 .content-section {
     display: flex;
@@ -162,8 +161,9 @@ nav {
     border-radius: 12px;
 }
 
+/* --- */
 
-/* Galeria */
+/* Galeria (Melhorias para Mobile) */
 
 .galeria-section {
     padding: 100px 40px;
@@ -186,21 +186,18 @@ nav {
     height: 400px;
     object-fit: cover;
     border-radius: 8px;
-    opacity: 0;
+    opacity: 1; /* Removido a animação de opacidade, o que pode causar problemas */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    /* Começa invisível para a animação */
 }
 
-.galeria-item,
-.galeria-item.loaded {
+.galeria-item:hover {
     transform: translateY(-5px);
-    opacity: 1;
 }
 
+/* --- */
 
-/* Call to Action */
-
+/* Call to Action e Rodapé - já estão responsivos */
 .cta-section {
     text-align: center;
     padding: 100px 40px;
@@ -226,9 +223,6 @@ nav {
     color: var(--bg-dark);
 }
 
-
-/* Rodapé */
-
 footer {
     text-align: center;
     padding: 20px;
@@ -236,25 +230,75 @@ footer {
     color: #fff;
 }
 
+/* --- */
 
-/* Mobile Responsivo */
+/* Media Queries para Mobile - Onde a mágica acontece */
 
 @media (max-width: 768px) {
+    /* Oculta os links da navegação padrão e mostra o botão do burger */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Ajuste para a altura do seu header */
+        left: 0;
+        background-color: var(--bg-dark);
+        padding: 20px;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+        display: flex; /* Mostra o menu quando estiver ativo */
+    }
+
+    .burger {
+        display: block; /* Mostra o botão do burger */
+    }
+
+    /* Oculta o logo branco e mostra um logo preto quando o menu está aberto */
+    .logo {
+        color: var(--text-color);
+        z-index: 1001; /* Garante que o logo fique por cima do menu */
+    }
+
+    /* Ajuste do layout das seções de conteúdo */
     .content-section {
         flex-direction: column;
         gap: 40px;
+        padding: 60px 20px; /* Reduz o padding para mais espaço */
     }
+
     .content-section.reverse-layout {
         flex-direction: column;
     }
+
     .content-text {
         min-width: unset;
         text-align: center;
     }
+
     .content-image {
-        height: 300px;
+        width: 100%; /* Imagem ocupa a largura total */
+        height: 250px; /* Reduz a altura da imagem */
     }
+    
+    .galeria-grid {
+        grid-template-columns: 1fr; /* Cada imagem ocupa uma linha */
+    }
+    
+    .galeria-item {
+        height: 300px; /* Altura menor para imagens da galeria */
+    }
+
+    /* Reduz o tamanho da fonte em telas menores */
     .hero-content h1 {
         font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
     }
 }
