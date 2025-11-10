@@ -3,133 +3,223 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Édaquí Studio & Broutha's Tour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Édaquí Studio - Fotografia e Videografia premium em Lubango. Capturando momentos únicos com arte e técnica.">
+    <title>Édaquí Studio - Fotografia & Videografia</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Header Sticky com Menu Hambúrguer -->
+    <header id="header" class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img class="logo_img" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                <span class="logo_text">Édaquí Studio</span>
+            </a>
 
-    <header>
-        <nav>
-            <a href="#" class="logo">Édaquí Studio</a>
+            <!-- Menu Hambúrguer (Mobile) -->
+            <button class="burger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menu de Navegação -->
             <ul class="nav-links">
-                <li><a href="#studio">Studio</a></li>
-                <li><a href="#tours">Broutha's Tour</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="index.html" class="nav-link active">Início</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
-            </div>
         </nav>
     </header>
 
     <main>
-
+        <!-- Hero Section com Tipografia Impactante -->
         <section class="hero-section">
-            <div class="hero-background"></div>
+            <div class="hero-background" style="background-image: url('https://i.ibb.co/9m5byd1D/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg');"></div>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Capturando a Essência. <br>Criando a Memória.</h1>
+                <h1 class="hero-title">Capturando a Essência.<br>Criando a Memória.</h1>
+                <p class="hero-subtitle">Transformamos momentos em arte através da fotografia e videografia</p>
+                <div class="hero-cta">
+                    <a href="portfolio.html" class="btn btn-primary">Ver Galeria</a>
+                    <a href="contacto.html" class="btn btn-secondary">Agendar Sessão</a>
+                </div>
             </div>
         </section>
 
+        <!-- Secção Últimos Trabalhos (Mini-Galeria) -->
+        <section class="latest-work-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Últimos Trabalhos</h2>
+                    <a href="portfolio.html" class="section-link">Ver Portfólio Completo →</a>
+                </div>
 
-        <section id="studio" class="content-section">
-            <div class="content-text reveal-item">
-                <h2 class="section-title">Édaquí Studio</h2>
-                <p>Somos um estúdio de Fotografia e Videografia localizado em Lubango. A nossa paixão é transformar momentos em arte, capturando emoções genuínas e histórias únicas através das nossas lentes. Nosso trabalho é a fusão de criatividade e técnica,
-                    para que cada imagem conte uma história inesquecível.</p>
-            </div>
-            <div class="content-image parallax-item" style="background-image: url('https://i.ibb.co/1GfHMkDd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg');"></div>
-        </section>
+                <div class="work-grid">
+                    <div class="work-card" data-category="casamento">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/FcGsL1J/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 1" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Casamento Premium</h3>
+                                <p class="work-category">Casamentos</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <section id="tours" class="content-section reverse-layout">
-            <div class="content-text reveal-item">
-                <h2 class="section-title">Broutha's Tour</h2>
-                <p>Muito mais que um passeio, somos uma agência de turismo especializada em Ecoturismo e Aventuras por Angola. Oferecemos pacotes e atividades com preços incríveis, tudo com a segurança que você precisa. Venha explorar paisagens deslumbrantes
-                    e criar memórias com uma experiência de turismo única.</p>
-            </div>
-            <div class="content-image parallax-item" style="background-image: url('https://i.ibb.co/cXk3rvtc/username-brouta-tour-biography-Ecoturismo-e-Aventuras-por-Angola-atividades-e-pacotes-com-pre-os-inc.jpg');"></div>
-        </section>
+                    <div class="work-card" data-category="retrato">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/fzTsbTD4/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 2" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Sessão de Retrato</h3>
+                                <p class="work-category">Retratos</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <section id="galeria" class="galeria-section">
-            <h2 class="section-title reveal-item">Nossa Obra</h2>
-            <div class="galeria-grid">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/FcGsL1J/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 1">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/fzTsbTD4/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 2">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/QjqNFpKd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 3">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/hF78b8c3/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 4">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/fG0WZRXZ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 5">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/Jw7HCfJ0/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 6">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/R4TyS9CN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 7">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/VpPg1XqH/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 8">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/8g4pWH3R/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 9">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/zVrYjcqF/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 10">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/NnNKBfCy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 11">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/JRcVPLsR/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 12">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/TBPbW6zP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 13">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/nMPWN0SX/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 14">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/9mQWdYYc/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 15">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/ymQpNQ9m/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 16">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/sdNghtPz/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 17">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/8LFJ3FDQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 18">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/7xyQcfGh/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 19">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/RpDNLDzN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 20">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/7J7zfjFf/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 21">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/twWNfcY6/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 22">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/W47CstKy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 23">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/4wPPvZ07/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 24">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/KjM5hDZW/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 25">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/5h79SkmQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 26">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/W9JYRRt/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 27">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/HpxZN0Mn/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 28">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/Jwfg3Ccv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 29">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/3ygdQ27X/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 30">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/7twmThPg/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 31">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/K3rzM5m/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 32">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/xKdM0hzP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 33">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/HDG5y2Rm/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 34">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/8g2w5Bdj/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 35">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/hJzWgmwQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 36">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/27cPqh9K/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 37">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/5gcmzDVv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 38">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/VcFzT0T9/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 39">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/kspGCGd6/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 40">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/DD8MKfmf/username-brouta-tour-biography-Ecoturismo-e-Aventuras-por-Angola-atividades-e-pacotes-com-pre-os-inc.jpg" alt="Foto da Galeria 41">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/0VvsgCXN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Foto da Galeria 42">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/kzY3sT0/kzY3sT0.jpg" alt="Foto da Galeria 43">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/1t4k34z8/1t4k34z8.jpg" alt="Foto da Galeria 44">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/93fT9crt/93fT9crt.jpg" alt="Foto da Galeria 45">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://i.ibb.co/2Yq2Jdh5/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da galeria 46">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/svC1vmMX/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg " alt="foto da galeria 47 ">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/6c14Pr1X/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da Galeria 48 ">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/7xdbMnsY/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da Galeria 49 ">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/9m5byd1D/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da Galeria 50 ">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/BKyBWnmx/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da Galeria 51 ">
-                <img class="galeria-item lazy" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src=" https://i.ibb.co/BV9MfXkN/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg" alt="Foto da Galeria 52 ">
+                    <div class="work-card" data-category="produto">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/QjqNFpKd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 3" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Fotografia de Produto</h3>
+                                <p class="work-category">Produto</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="evento">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/hF78b8c3/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 4" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Evento Corporativo</h3>
+                                <p class="work-category">Eventos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="casamento">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/fG0WZRXZ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 5" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Cerimónia Intima</h3>
+                                <p class="work-category">Casamentos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="retrato">
+                        <div class="work-image">
+                            <img src="https://i.ibb.co/Jw7HCfJ0/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Trabalho 6" loading="lazy">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Família</h3>
+                                <p class="work-category">Retratos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="contato" class="cta-section">
-            <h2 class="section-title reveal-item">Ficou Interessado? Fale Conosco!</h2>
-            <p>
-                <strong>Édaquí Studio:</strong> strong 933412292 | 942385122 | Instagram: <a href="https://www.instagram.com/edaquistudio" target="_blank">@edaquistudio</a>
-            </p>
-            <p>
-                <strong>Broutha's Tour:</strong> strong +244 933412292 | Instagram: <a href="https://www.instagram.com/brouta_tour" target="_blank">@brouta_tour</a>
-            </p>
-            <a href="mailto:brouta45@gmail.com" class="cta-button reveal-item">Envie um Email</a>
+        <!-- Secção Sobre (Preview) -->
+        <section class="about-preview-section">
+            <div class="container">
+                <div class="about-preview-content">
+                    <div class="about-preview-image">
+                        <img src="https://i.ibb.co/1GfHMkDd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg" alt="Édaquí Studio" loading="lazy">
+                    </div>
+                    <div class="about-preview-text">
+                        <h2 class="section-title">Édaquí Studio</h2>
+                        <p>Somos um estúdio de Fotografia e Videografia localizado em Lubango. A nossa paixão é transformar momentos em arte, capturando emoções genuínas e histórias únicas através das nossas lentes.</p>
+                        <p>Nosso trabalho é a fusão de criatividade e técnica, para que cada imagem conte uma história inesquecível.</p>
+                        <a href="sobre.html" class="btn btn-outline">Saber Mais</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Secção CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Pronto para Criar Memórias Inesquecíveis?</h2>
+                <p class="cta-text">Entre em contacto e vamos transformar os seus momentos em arte</p>
+                <a href="contacto.html" class="btn btn-primary btn-large">Agendar Sessão</a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Édaquí Studio. Todos os direitos reservados.</p>
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Fechar">&times;</button>
+        <button class="lightbox-prev" aria-label="Anterior">‹</button>
+        <button class="lightbox-next" aria-label="Seguinte">›</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-info">
+                <span id="lightboxCounter"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img class="footer-logo" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                    <p class="footer-tagline">Capturando a Essência. Criando a Memória.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="portfolio.html">Portfólio</a></li>
+                            <li><a href="servicos.html">Serviços</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>+244 933 412 292</li>
+                            <li>+244 942 385 122</li>
+                            <li><a href="mailto:brouta45@gmail.com">brouta45@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Redes Sociais</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/edaquistudio" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="https://www.instagram.com/brouta_tour" target="_blank" rel="noopener">Broutha's Tour</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Édaquí Studio. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js "></script>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
+        <i id="themeIcon" class="fa-regular fa-moon"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-api.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
+
+

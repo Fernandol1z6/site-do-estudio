@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Contacte o Édaquí Studio - Agende a sua sessão de fotografia">
+    <title>Contacto - Édaquí Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img class="logo_img" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                <span class="logo_text">Édaquí Studio</span>
+            </a>
+            
+            <button class="burger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section Contacto -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1 class="page-title">Contacto</h1>
+                <p class="page-subtitle">Vamos conversar sobre o seu projeto</p>
+            </div>
+        </section>
+
+        <!-- Secção de Contacto -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <!-- Formulário -->
+                    <div class="contact-form-wrapper">
+                        <h2 class="section-title">Envie-nos uma Mensagem</h2>
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" required minlength="2">
+                                <span class="error-message" id="nomeError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" required minlength="9">
+                                <span class="error-message" id="telefoneError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="servico">Tipo de Serviço *</label>
+                                <select id="servico" name="servico" required>
+                                    <option value="">Selecione um serviço</option>
+                                    <option value="casamento">Cobertura de Casamento</option>
+                                    <option value="retrato">Sessão de Retrato</option>
+                                    <option value="produto">Fotografia de Produto</option>
+                                    <option value="evento">Eventos Corporativos</option>
+                                    <option value="videografia">Videografia</option>
+                                    <option value="pacote">Pacote Completo</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                                <span class="error-message" id="servicoError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required minlength="10"></textarea>
+                                <span class="error-message" id="mensagemError"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">Enviar Mensagem</button>
+                            
+                            <div class="form-success" id="formSuccess" style="display: none;">
+                                <p>✓ Mensagem enviada com sucesso! Entraremos em contacto em breve.</p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Informações de Contacto -->
+                    <div class="contact-info">
+                        <h2 class="section-title">Informações de Contacto</h2>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="contact-details">
+                                <h3>Telefone</h3>
+                                <p><a href="tel:+244933412292">+244 933 412 292</a></p>
+                                <p><a href="tel:+244942385122">+244 942 385 122</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:brouta45@gmail.com">brouta45@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="contact-details">
+                                <h3>Localização</h3>
+                                <p>Lubango, Angola</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                            <div class="contact-details">
+                                <h3>Redes Sociais</h3>
+                                <p>
+                                    <a href="https://www.instagram.com/edaquistudio" target="_blank" rel="noopener">@edaquistudio</a>
+                                </p>
+                                <p>
+                                    <a href="https://www.instagram.com/brouta_tour" target="_blank" rel="noopener">@brouta_tour</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img class="footer-logo" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                    <p class="footer-tagline">Capturando a Essência. Criando a Memória.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="portfolio.html">Portfólio</a></li>
+                            <li><a href="servicos.html">Serviços</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>+244 933 412 292</li>
+                            <li>+244 942 385 122</li>
+                            <li><a href="mailto:brouta45@gmail.com">brouta45@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Redes Sociais</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/edaquistudio" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="https://www.instagram.com/brouta_tour" target="_blank" rel="noopener">Broutha's Tour</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Édaquí Studio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
+        <i id="themeIcon" class="fa-regular fa-moon"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-api.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+

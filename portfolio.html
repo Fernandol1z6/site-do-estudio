@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Portfólio completo do Édaquí Studio - Galeria de fotografias e vídeos profissionais">
+    <title>Portfólio - Édaquí Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img class="logo_img" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                <span class="logo_text">Édaquí Studio</span>
+            </a>
+            
+            <button class="burger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="portfolio.html" class="nav-link active">Portfólio</a></li>
+                <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section Portfólio -->
+        <section class="portfolio-hero">
+            <div class="container">
+                <h1 class="page-title">Portfólio</h1>
+                <p class="page-subtitle">Explore a nossa coleção de trabalhos</p>
+            </div>
+        </section>
+
+        <!-- Filtros -->
+        <section class="portfolio-filters-section">
+            <div class="container">
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="casamento">Casamentos</button>
+                    <button class="filter-btn" data-filter="retrato">Retratos</button>
+                    <button class="filter-btn" data-filter="produto">Produto</button>
+                    <button class="filter-btn" data-filter="evento">Eventos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria de Imagens -->
+        <section class="portfolio-gallery-section">
+            <div class="container">
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Imagens serão carregadas dinamicamente via JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Fechar">&times;</button>
+        <button class="lightbox-prev" aria-label="Anterior">‹</button>
+        <button class="lightbox-next" aria-label="Seguinte">›</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-info">
+                <span id="lightboxCounter"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img class="footer-logo" src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                    <p class="footer-tagline">Capturando a Essência. Criando a Memória.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="portfolio.html">Portfólio</a></li>
+                            <li><a href="servicos.html">Serviços</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>+244 933 412 292</li>
+                            <li>+244 942 385 122</li>
+                            <li><a href="mailto:brouta45@gmail.com">brouta45@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Redes Sociais</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/edaquistudio" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="https://www.instagram.com/brouta_tour" target="_blank" rel="noopener">Broutha's Tour</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Édaquí Studio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
+        <i id="themeIcon" class="fa-regular fa-moon"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Dados da galeria - todas as imagens do portfólio
+        const portfolioImages = [
+            { src: 'https://i.ibb.co/FcGsL1J/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 1' },
+            { src: 'https://i.ibb.co/fzTsbTD4/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 1' },
+            { src: 'https://i.ibb.co/QjqNFpKd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 1' },
+            { src: 'https://i.ibb.co/hF78b8c3/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 1' },
+            { src: 'https://i.ibb.co/fG0WZRXZ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 2' },
+            { src: 'https://i.ibb.co/Jw7HCfJ0/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 2' },
+            { src: 'https://i.ibb.co/R4TyS9CN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 2' },
+            { src: 'https://i.ibb.co/VpPg1XqH/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 2' },
+            { src: 'https://i.ibb.co/8g4pWH3R/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 3' },
+            { src: 'https://i.ibb.co/zVrYjcqF/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 3' },
+            { src: 'https://i.ibb.co/NnNKBfCy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 3' },
+            { src: 'https://i.ibb.co/JRcVPLsR/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 3' },
+            { src: 'https://i.ibb.co/TBPbW6zP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 4' },
+            { src: 'https://i.ibb.co/nMPWN0SX/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 4' },
+            { src: 'https://i.ibb.co/9mQWdYYc/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 4' },
+            { src: 'https://i.ibb.co/ymQpNQ9m/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 4' },
+            { src: 'https://i.ibb.co/sdNghtPz/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 5' },
+            { src: 'https://i.ibb.co/8LFJ3FDQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 5' },
+            { src: 'https://i.ibb.co/7xyQcfGh/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 5' },
+            { src: 'https://i.ibb.co/RpDNLDzN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 5' },
+            { src: 'https://i.ibb.co/7J7zfjFf/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 6' },
+            { src: 'https://i.ibb.co/twWNfcY6/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 6' },
+            { src: 'https://i.ibb.co/W47CstKy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 6' },
+            { src: 'https://i.ibb.co/4wPPvZ07/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 6' },
+            { src: 'https://i.ibb.co/KjM5hDZW/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 7' },
+            { src: 'https://i.ibb.co/5h79SkmQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 7' },
+            { src: 'https://i.ibb.co/W9JYRRt/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 7' },
+            { src: 'https://i.ibb.co/HpxZN0Mn/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 7' },
+            { src: 'https://i.ibb.co/Jwfg3Ccv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 8' },
+            { src: 'https://i.ibb.co/3ygdQ27X/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 8' },
+            { src: 'https://i.ibb.co/7twmThPg/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 8' },
+            { src: 'https://i.ibb.co/xKdM0hzP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 8' },
+            { src: 'https://i.ibb.co/HDG5y2Rm/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 9' },
+            { src: 'https://i.ibb.co/8g2w5Bdj/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 9' },
+            { src: 'https://i.ibb.co/hJzWgmwQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 9' },
+            { src: 'https://i.ibb.co/27cPqh9K/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 9' },
+            { src: 'https://i.ibb.co/5gcmzDVv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 10' },
+            { src: 'https://i.ibb.co/VcFzT0T9/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 10' },
+            { src: 'https://i.ibb.co/DD8MKfmf/username-brouta-tour-biography-Ecoturismo-e-Aventuras-por-Angola-atividades-e-pacotes-com-pre-os-inc.jpg', category: 'evento', alt: 'Evento 10' },
+            { src: 'https://i.ibb.co/0VvsgCXN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 11' },
+            { src: 'https://i.ibb.co/kzY3sT0/kzY3sT0.jpg', category: 'retrato', alt: 'Retrato 11' },
+            { src: 'https://i.ibb.co/1t4k34z8/1t4k34z8.jpg', category: 'produto', alt: 'Produto 10' },
+            { src: 'https://i.ibb.co/93fT9crt/93fT9crt.jpg', category: 'evento', alt: 'Evento 11' },
+            { src: 'https://i.ibb.co/2Yq2Jdh5/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg', category: 'casamento', alt: 'Casamento 12' }
+        ];
+
+        // Inicializar portfólio quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initPortfolio === 'function') {
+                initPortfolio(portfolioImages);
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
