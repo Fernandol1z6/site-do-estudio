@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerir Conteúdo - Édaquí Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .admin-header h1 {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .admin-header p {
+            color: var(--text-secondary);
+        }
+
+        .admin-section {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid var(--border-color);
+        }
+
+        .admin-section h2 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-primary);
+        }
+
+        .btn-danger {
+            background: #ff3b30;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .photo-item {
+            position: relative;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .photo-item-info {
+            padding: var(--spacing-sm);
+        }
+
+        .photo-item-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .photo-item-category {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            text-transform: capitalize;
+        }
+
+        .photo-item-actions {
+            position: absolute;
+            top: var(--spacing-xs);
+            right: var(--spacing-xs);
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .photo-item-actions button {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-item-actions button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .alert-success {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+            border: 1px solid #34c759;
+        }
+
+        .alert-error {
+            background: rgba(255, 59, 48, 0.1);
+            color: #ff3b30;
+            border: 1px solid #ff3b30;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .export-import {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .btn-sm {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-page">
+        <div class="admin-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                <a href="index.html" class="back-link">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar ao Site
+                </a>
+                <button class="btn btn-secondary" onclick="logout()" style="margin-left: auto;">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+
+            <div class="admin-header">
+                <h1>Gerir Conteúdo do Site</h1>
+                <p>Adicione e gerencie as fotos da galeria facilmente</p>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <!-- Adicionar Foto -->
+            <div class="admin-section">
+                <h2><i class="fa-solid fa-plus"></i> Adicionar Nova Foto</h2>
+                <form id="addPhotoForm">
+                    <div class="form-group">
+                        <label for="photoUrl">URL da Imagem *</label>
+                        <input type="url" id="photoUrl" required placeholder="Cole aqui o link direto da imagem (ex: ImgBB, Google Drive público)">
+                        <small style="color: var(--text-secondary); display: block; margin-top: var(--spacing-xs);">
+                            Dica: Use serviços como <a href="https://imgbb.com" target="_blank" style="color: var(--accent);">ImgBB</a> para fazer upload das imagens
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoAlt">Descrição da Imagem *</label>
+                        <input type="text" id="photoAlt" required placeholder="Ex: Casamento Premium">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoCategory">Categoria *</label>
+                        <select id="photoCategory" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="casamento">Casamentos</option>
+                            <option value="retrato">Retratos</option>
+                            <option value="produto">Produto</option>
+                            <option value="evento">Eventos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoTitle">Título (Opcional)</label>
+                        <input type="text" id="photoTitle" placeholder="Título da foto">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-save"></i> Adicionar Foto
+                    </button>
+                </form>
+            </div>
+
+            <!-- Lista de Fotos -->
+            <div class="admin-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                    <h2><i class="fa-solid fa-images"></i> Galeria de Fotos</h2>
+                    <div>
+                        <button class="btn btn-secondary" onclick="exportData()">
+                            <i class="fa-solid fa-download"></i> Exportar Dados
+                        </button>
+                        <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">
+                            <i class="fa-solid fa-upload"></i> Importar Dados
+                        </button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+                    </div>
+                </div>
+
+                <div class="photos-grid" id="photosGrid">
+                    <!-- Fotos serão carregadas aqui -->
+                </div>
+            </div>
+
+            <!-- Gerenciar Usuários -->
+            <div class="admin-section">
+                <h2><i class="fa-solid fa-users"></i> Gerenciar Utilizadores</h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                    Gerencie as senhas dos 3 utilizadores autorizados. Cada utilizador tem sua própria senha.
+                </p>
+                <div style="background: rgba(52, 199, 89, 0.1); border: 1px solid #34c759; border-radius: 8px; padding: var(--spacing-sm); margin-bottom: var(--spacing-lg);">
+                    <small style="color: #34c759;">
+                        <i class="fa-solid fa-info-circle"></i> <strong>Senha padrão inicial:</strong> 12345678 (para todos os utilizadores)
+                    </small>
+                </div>
+                <div id="usersList">
+                    <!-- Usuários serão carregados aqui -->
+                </div>
+            </div>
+
+            <!-- Configurações -->
+            <div class="admin-section">
+                <h2><i class="fa-solid fa-cog"></i> Configurações do Site</h2>
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="heroTitle">Título do Hero (Página Inicial)</label>
+                        <input type="text" id="heroTitle" placeholder="Capturando a Essência. Criando a Memória.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heroSubtitle">Subtítulo do Hero</label>
+                        <input type="text" id="heroSubtitle" placeholder="Transformamos momentos em arte">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heroImage">URL da Imagem do Hero</label>
+                        <input type="url" id="heroImage" placeholder="https://...">
+                    </div>
+
+                    <h3 style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">Contactos</h3>
+
+                    <div class="form-group">
+                        <label for="phone1">Telefone 1</label>
+                        <input type="tel" id="phone1" placeholder="+244 933 412 292">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone2">Telefone 2</label>
+                        <input type="tel" id="phone2" placeholder="+244 942 385 122">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="brouta45@gmail.com">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-save"></i> Guardar Configurações
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login-gerir.js"></script>
+    <script>
+        // Verificar autenticação após scripts carregarem completamente
+        (function() {
+            let authChecked = false;
+            let redirecting = false;
+
+            function checkAuth() {
+                // Evitar múltiplas verificações
+                if (authChecked || redirecting) return;
+
+                // Verificar se a função está disponível
+                if (typeof window.checkAdminSession === 'function') {
+                    authChecked = true;
+                    if (!window.checkAdminSession()) {
+                        redirecting = true;
+                        // Usar replace para não adicionar ao histórico
+                        window.location.replace('login-gerir.html');
+                    }
+                } else {
+                    // Aguardar um pouco mais se a função ainda não estiver disponível
+                    setTimeout(checkAuth, 50);
+                }
+            }
+
+            // Aguardar scripts carregarem completamente
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(checkAuth, 200);
+                });
+            } else {
+                setTimeout(checkAuth, 200);
+            }
+        })();
+    </script>
+    <script src="gerir.js"></script>
+    <script>
+        // Função de logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                if (typeof clearAdminSession === 'function') {
+                    clearAdminSession();
+                }
+                window.location.href = 'login-gerir.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

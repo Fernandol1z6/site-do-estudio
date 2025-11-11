@@ -34,6 +34,7 @@
                 <li><a href="servicos.html" class="nav-link">Serviços</a></li>
                 <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                <li><a href="login-gerir.html" class="nav-link" style="color: var(--accent);"><i class="fa-solid fa-cog"></i> Gerir</a></li>
             </ul>
         </nav>
     </header>
@@ -130,66 +131,7 @@
         <i id="themeIcon" class="fa-regular fa-moon"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
-    <script src="supabase-api.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Dados da galeria - todas as imagens do portfólio
-        const portfolioImages = [
-            { src: 'https://i.ibb.co/FcGsL1J/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 1' },
-            { src: 'https://i.ibb.co/fzTsbTD4/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 1' },
-            { src: 'https://i.ibb.co/QjqNFpKd/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 1' },
-            { src: 'https://i.ibb.co/hF78b8c3/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 1' },
-            { src: 'https://i.ibb.co/fG0WZRXZ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 2' },
-            { src: 'https://i.ibb.co/Jw7HCfJ0/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 2' },
-            { src: 'https://i.ibb.co/R4TyS9CN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 2' },
-            { src: 'https://i.ibb.co/VpPg1XqH/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 2' },
-            { src: 'https://i.ibb.co/8g4pWH3R/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 3' },
-            { src: 'https://i.ibb.co/zVrYjcqF/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 3' },
-            { src: 'https://i.ibb.co/NnNKBfCy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 3' },
-            { src: 'https://i.ibb.co/JRcVPLsR/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 3' },
-            { src: 'https://i.ibb.co/TBPbW6zP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 4' },
-            { src: 'https://i.ibb.co/nMPWN0SX/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 4' },
-            { src: 'https://i.ibb.co/9mQWdYYc/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 4' },
-            { src: 'https://i.ibb.co/ymQpNQ9m/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 4' },
-            { src: 'https://i.ibb.co/sdNghtPz/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 5' },
-            { src: 'https://i.ibb.co/8LFJ3FDQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 5' },
-            { src: 'https://i.ibb.co/7xyQcfGh/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 5' },
-            { src: 'https://i.ibb.co/RpDNLDzN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 5' },
-            { src: 'https://i.ibb.co/7J7zfjFf/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 6' },
-            { src: 'https://i.ibb.co/twWNfcY6/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 6' },
-            { src: 'https://i.ibb.co/W47CstKy/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 6' },
-            { src: 'https://i.ibb.co/4wPPvZ07/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 6' },
-            { src: 'https://i.ibb.co/KjM5hDZW/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 7' },
-            { src: 'https://i.ibb.co/5h79SkmQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 7' },
-            { src: 'https://i.ibb.co/W9JYRRt/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 7' },
-            { src: 'https://i.ibb.co/HpxZN0Mn/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 7' },
-            { src: 'https://i.ibb.co/Jwfg3Ccv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 8' },
-            { src: 'https://i.ibb.co/3ygdQ27X/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 8' },
-            { src: 'https://i.ibb.co/7twmThPg/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 8' },
-            { src: 'https://i.ibb.co/xKdM0hzP/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 8' },
-            { src: 'https://i.ibb.co/HDG5y2Rm/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 9' },
-            { src: 'https://i.ibb.co/8g2w5Bdj/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 9' },
-            { src: 'https://i.ibb.co/hJzWgmwQ/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'produto', alt: 'Produto 9' },
-            { src: 'https://i.ibb.co/27cPqh9K/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'evento', alt: 'Evento 9' },
-            { src: 'https://i.ibb.co/5gcmzDVv/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 10' },
-            { src: 'https://i.ibb.co/VcFzT0T9/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'retrato', alt: 'Retrato 10' },
-            { src: 'https://i.ibb.co/DD8MKfmf/username-brouta-tour-biography-Ecoturismo-e-Aventuras-por-Angola-atividades-e-pacotes-com-pre-os-inc.jpg', category: 'evento', alt: 'Evento 10' },
-            { src: 'https://i.ibb.co/0VvsgCXN/username-edaqui-studio-biography-Fotografia-e-Videografia-n-933412292-942385122-full-name-E-daqui-St.jpg', category: 'casamento', alt: 'Casamento 11' },
-            { src: 'https://i.ibb.co/kzY3sT0/kzY3sT0.jpg', category: 'retrato', alt: 'Retrato 11' },
-            { src: 'https://i.ibb.co/1t4k34z8/1t4k34z8.jpg', category: 'produto', alt: 'Produto 10' },
-            { src: 'https://i.ibb.co/93fT9crt/93fT9crt.jpg', category: 'evento', alt: 'Evento 11' },
-            { src: 'https://i.ibb.co/2Yq2Jdh5/Onde-o-deserto-beija-o-oceano-Onde-o-sil-ncio-do-areial-encontra-o-rugir-das-ondas-Bem-vindo-s-praia.jpg', category: 'casamento', alt: 'Casamento 12' }
-        ];
-
-        // Inicializar portfólio quando a página carregar
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof initPortfolio === 'function') {
-                initPortfolio(portfolioImages);
-            }
-        });
-    </script>
 </body>
 
 </html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gerir Conteúdo - Édaquí Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            padding: var(--spacing-md);
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .login-header .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .login-header .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+
+        .login-header h1 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .form-group label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            transition: all var(--transition-base);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: var(--spacing-sm);
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            margin-top: var(--spacing-sm);
+        }
+
+        .login-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .login-footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-base);
+        }
+
+        .login-footer a:hover {
+            color: var(--text-primary);
+        }
+
+        .error-message {
+            background: rgba(255, 59, 48, 0.1);
+            color: #ff3b30;
+            padding: var(--spacing-sm);
+            border-radius: 8px;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-sm);
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--bg-primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: var(--spacing-xs);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .setup-link {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/8DWF91SJ/Screenshot-20250828-222211-Instagram.png" alt="Logo Édaquí Studio">
+                    <span>Édaquí Studio</span>
+                </a>
+                <h1>Acesso Restrito</h1>
+                <p>Digite a senha para aceder ao painel de gestão</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Utilizador</label>
+                    <select id="username" name="username" required style="width: 100%; padding: var(--spacing-sm); border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-tertiary); color: var(--text-primary); font-size: var(--font-size-base); font-family: var(--font-family);">
+                        <option value="">Selecione um utilizador</option>
+                        <option value="admin1">Administrador 1</option>
+                        <option value="admin2">Administrador 2</option>
+                        <option value="admin3">Administrador 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Palavra-passe</label>
+                    <input type="password" id="password" name="password" placeholder="Digite a sua palavra-passe" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    Entrar
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <a href="index.html">← Voltar ao site</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="login-gerir.js"></script>
+</body>
+
+</html>
+

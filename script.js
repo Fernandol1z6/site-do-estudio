@@ -145,47 +145,17 @@
     let currentFilter = 'all';
     let currentImageIndex = 0;
 
-    async function initPortfolio(images) {
-        // Tentar carregar do Supabase primeiro
-        let photos = [];
-        
-        if (isSupabaseAvailable() && USE_SUPABASE) {
-            try {
-                photos = await getPhotos();
-                portfolioImages = photos.map(photo => ({
-                    src: photo.url,
-                    alt: photo.alt,
-                    category: photo.category
-                }));
-            } catch (error) {
-                console.error('Erro ao carregar fotos do Supabase:', error);
-                // Fallback
-                const dynamicData = getDynamicData();
-                if (dynamicData && dynamicData.photos && dynamicData.photos.length > 0) {
-                    portfolioImages = dynamicData.photos.map(photo => ({
-                        src: photo.url,
-                        alt: photo.alt,
-                        category: photo.category
-                    }));
-                } else if (images && Array.isArray(images)) {
-                    portfolioImages = images;
-                } else {
-                    return;
-                }
-            }
+    function initPortfolio() {
+        // Carregar fotos do localStorage
+        const dynamicData = getDynamicData();
+        if (dynamicData && dynamicData.photos && dynamicData.photos.length > 0) {
+            portfolioImages = dynamicData.photos.map(photo => ({
+                src: photo.url,
+                alt: photo.alt || photo.title || 'Foto',
+                category: photo.category
+            }));
         } else {
-            const dynamicData = getDynamicData();
-            if (dynamicData && dynamicData.photos && dynamicData.photos.length > 0) {
-                portfolioImages = dynamicData.photos.map(photo => ({
-                    src: photo.url,
-                    alt: photo.alt,
-                    category: photo.category
-                }));
-            } else if (images && Array.isArray(images)) {
-                portfolioImages = images;
-            } else {
-                return;
-            }
+            return;
         }
         
         const portfolioGrid = $('#portfolioGrid');
@@ -582,37 +552,26 @@
        CARDS DE TRABALHO (PÁGINA INICIAL)
        ============================================ */
 
-    async function initWorkCards() {
-        // Tentar carregar do Supabase primeiro
-        let workCards = [];
+    function initWorkCards() {
+        // Carregar work cards do localStorage
+        const dynamicData = getDynamicData();
         
-        if (isSupabaseAvailable() && USE_SUPABASE) {
-            try {
-                workCards = await getWorkCards();
-            } catch (error) {
-                console.error('Erro ao carregar work cards do Supabase:', error);
-                const dynamicData = getDynamicData();
-                workCards = dynamicData?.workCards || [];
-            }
-        } else {
-            const dynamicData = getDynamicData();
-            workCards = dynamicData?.workCards || [];
-        }
-        
-        if (workCards && workCards.length > 0) {
+        // Se não houver work cards específicos, usar as primeiras 6 fotos
+        if (dynamicData?.photos && dynamicData.photos.length > 0) {
+            const firstPhotos = dynamicData.photos.slice(0, 6);
             const workGrid = $('.work-grid');
             if (workGrid) {
                 workGrid.innerHTML = '';
-                workCards.forEach((card, index) => {
+                firstPhotos.forEach((photo, index) => {
                     const workCard = document.createElement('div');
                     workCard.className = 'work-card';
-                    workCard.dataset.category = card.category;
+                    workCard.dataset.category = photo.category;
                     workCard.innerHTML = `
                         <div class="work-image">
-                            <img src="${card.image}" alt="${card.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Imagem+Não+Encontrada'">
+                            <img src="${photo.url}" alt="${photo.alt || photo.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Imagem+Não+Encontrada'">
                             <div class="work-overlay">
-                                <h3 class="work-title">${card.title}</h3>
-                                <p class="work-category">${card.category}</p>
+                                <h3 class="work-title">${photo.title || photo.alt}</h3>
+                                <p class="work-category">${photo.category}</p>
                             </div>
                         </div>
                     `;
@@ -625,187 +584,42 @@
                 });
             }
         }
-
-        // Também manter compatibilidade com work cards estáticos do HTML
-
-        const staticWorkCards = $$('.work-card');
-        staticWorkCards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                if (window.openLightbox) {
-                    window.openLightbox(index);
-                }
-            });
-        });
     }
 
-    async function loadDynamicContent() {
-        // Tentar carregar do Supabase primeiro
-        let dynamicData = null;
+    function loadDynamicContent() {
+        // Carregar dados do localStorage (sistema estático)
+        const dynamicData = getDynamicData();
         
-        if (isSupabaseAvailable() && USE_SUPABASE) {
-            try {
-                const [settings, about, services, workCards] = await Promise.all([
-                    getSettings(),
-                    getAbout(),
-                    getServices(),
-                    getWorkCards()
-                ]);
-                
-                dynamicData = {
-                    settings,
-                    about,
-                    services,
-                    workCards
-                };
-            } catch (error) {
-                console.error('Erro ao carregar do Supabase:', error);
-                dynamicData = getDynamicData(); // Fallback para localStorage
-            }
-        } else {
-            dynamicData = getDynamicData();
-        }
-        
-        if (!dynamicData) return;
+        if (!dynamicData || !dynamicData.settings) return;
 
         // Atualizar Hero Section
-        if (dynamicData.settings) {
-            const heroTitle = $('.hero-title');
-            const heroSubtitle = $('.hero-subtitle');
-            const heroBackground = $('.hero-background');
-            
-            if (heroTitle && dynamicData.settings.heroTitle) {
-                heroTitle.innerHTML = dynamicData.settings.heroTitle.replace(/\n/g, '<br>');
-            }
-            if (heroSubtitle && dynamicData.settings.heroSubtitle) {
-                heroSubtitle.textContent = dynamicData.settings.heroSubtitle;
-            }
-            if (heroBackground && dynamicData.settings.heroImage) {
-                heroBackground.style.backgroundImage = `url('${dynamicData.settings.heroImage}')`;
-            }
+        const heroTitle = $('.hero-title');
+        const heroSubtitle = $('.hero-subtitle');
+        const heroBackground = $('.hero-background');
+        
+        if (heroTitle && dynamicData.settings.heroTitle) {
+            heroTitle.innerHTML = dynamicData.settings.heroTitle.replace(/\n/g, '<br>');
         }
-
-        // Atualizar Secção Sobre (página inicial e página sobre)
-        if (dynamicData.about) {
-            // Página inicial
-            const aboutTitle = $('.about-preview-text .section-title');
-            const aboutText = $('.about-preview-text');
-            
-            if (aboutTitle && dynamicData.about.title) {
-                aboutTitle.textContent = dynamicData.about.title;
-            }
-            
-            if (aboutText) {
-                let paragraphs = '';
-                if (dynamicData.about.description1) {
-                    paragraphs += `<p>${dynamicData.about.description1}</p>`;
-                }
-                if (dynamicData.about.description2) {
-                    paragraphs += `<p>${dynamicData.about.description2}</p>`;
-                }
-                if (dynamicData.about.description3) {
-                    paragraphs += `<p>${dynamicData.about.description3}</p>`;
-                }
-                const existingP = aboutText.querySelectorAll('p');
-                existingP.forEach(p => p.remove());
-                aboutText.insertAdjacentHTML('afterbegin', paragraphs);
-            }
-
-            const aboutImage = $('.about-preview-image img');
-            if (aboutImage && dynamicData.about.image) {
-                aboutImage.src = dynamicData.about.image;
-            }
-
-            // Página sobre.html
-            const aboutPageTitle = $('#aboutTitle');
-            const aboutDescriptions = $('#aboutDescriptions');
-            
-            if (aboutPageTitle && dynamicData.about.title) {
-                aboutPageTitle.textContent = dynamicData.about.title;
-            }
-            
-            if (aboutDescriptions) {
-                aboutDescriptions.innerHTML = '';
-                if (dynamicData.about.description1) {
-                    const p1 = document.createElement('p');
-                    p1.textContent = dynamicData.about.description1;
-                    aboutDescriptions.appendChild(p1);
-                }
-                if (dynamicData.about.description2) {
-                    const p2 = document.createElement('p');
-                    p2.textContent = dynamicData.about.description2;
-                    aboutDescriptions.appendChild(p2);
-                }
-                if (dynamicData.about.description3) {
-                    const p3 = document.createElement('p');
-                    p3.textContent = dynamicData.about.description3;
-                    aboutDescriptions.appendChild(p3);
-                }
-            }
-
-            const aboutPageImage = $('.about-image img');
-            if (aboutPageImage && dynamicData.about.image) {
-                aboutPageImage.src = dynamicData.about.image;
-            }
-
-            // Estatísticas
-            if (dynamicData.about.stats) {
-                const stats = dynamicData.about.stats;
-                const stat1Number = $('#stat1Number');
-                const stat1Label = $('#stat1Label');
-                const stat2Number = $('#stat2Number');
-                const stat2Label = $('#stat2Label');
-                const stat3Number = $('#stat3Number');
-                const stat3Label = $('#stat3Label');
-
-                if (stat1Number && stats.stat1) stat1Number.textContent = stats.stat1.number;
-                if (stat1Label && stats.stat1) stat1Label.textContent = stats.stat1.label;
-                if (stat2Number && stats.stat2) stat2Number.textContent = stats.stat2.number;
-                if (stat2Label && stats.stat2) stat2Label.textContent = stats.stat2.label;
-                if (stat3Number && stats.stat3) stat3Number.textContent = stats.stat3.number;
-                if (stat3Label && stats.stat3) stat3Label.textContent = stats.stat3.label;
-            }
+        if (heroSubtitle && dynamicData.settings.heroSubtitle) {
+            heroSubtitle.textContent = dynamicData.settings.heroSubtitle;
         }
-
-        // Atualizar Serviços
-        if (dynamicData.services && dynamicData.services.length > 0) {
-            const servicesGrid = $('.services-grid');
-            if (servicesGrid) {
-                servicesGrid.innerHTML = '';
-                dynamicData.services.forEach(service => {
-                    const serviceCard = document.createElement('div');
-                    serviceCard.className = 'service-card';
-                    serviceCard.innerHTML = `
-                        <div class="service-image">
-                            <img src="${service.image}" alt="${service.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Imagem+Não+Encontrada'">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">${service.title}</h3>
-                            <p class="service-description">${service.description}</p>
-                            <div class="service-price">${service.price}</div>
-                            <a href="contacto.html" class="btn btn-primary">Saber Mais</a>
-                        </div>
-                    `;
-                    servicesGrid.appendChild(serviceCard);
-                });
-            }
+        if (heroBackground && dynamicData.settings.heroImage) {
+            heroBackground.style.backgroundImage = `url('${dynamicData.settings.heroImage}')`;
         }
 
         // Atualizar Footer com contactos
-        if (dynamicData.settings && dynamicData.settings.contacts) {
-            const contacts = dynamicData.settings.contacts;
-            const footerPhones = $$('.footer-column ul li');
-            if (footerPhones.length > 0) {
-                footerPhones[0].textContent = contacts.phone1 || footerPhones[0].textContent;
-                if (footerPhones[1]) {
-                    footerPhones[1].textContent = contacts.phone2 || footerPhones[1].textContent;
-                }
-            }
-            
-            const footerEmail = $('.footer-column a[href^="mailto"]');
-            if (footerEmail && contacts.email) {
-                footerEmail.textContent = contacts.email;
-                footerEmail.href = `mailto:${contacts.email}`;
-            }
+        const footerPhones = $$('.footer-column ul li');
+        if (footerPhones.length > 0 && dynamicData.settings.phone1) {
+            footerPhones[0].textContent = dynamicData.settings.phone1;
+        }
+        if (footerPhones.length > 1 && dynamicData.settings.phone2) {
+            footerPhones[1].textContent = dynamicData.settings.phone2;
+        }
+        
+        const footerEmail = $('.footer-column a[href^="mailto"]');
+        if (footerEmail && dynamicData.settings.email) {
+            footerEmail.textContent = dynamicData.settings.email;
+            footerEmail.href = `mailto:${dynamicData.settings.email}`;
         }
     }
 
@@ -905,11 +719,6 @@
        ============================================ */
 
     function init() {
-        // Inicializar Supabase
-        if (typeof initSupabase === 'function') {
-            initSupabase();
-        }
-
         initHeader();
         initScrollAnimations();
         initLightbox();
@@ -917,11 +726,18 @@
         initLazyLoading();
         initSmoothScroll();
         initThemeToggle();
+        
+        // Carregar conteúdo dinâmico
         loadDynamicContent();
         initWorkCards();
 
         // Expor função global para portfólio
         window.initPortfolio = initPortfolio;
+        
+        // Carregar portfólio se estiver na página de portfólio
+        if ($('#portfolioGrid')) {
+            initPortfolio();
+        }
     }
 
     // Aguardar DOM carregado
